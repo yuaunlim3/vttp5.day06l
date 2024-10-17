@@ -36,9 +36,9 @@ public class Main {
                 .filter(product -> product.getCategory().equals("Mobile"))
                 .collect(Collectors.toList());
 
-        mobileProducts.forEach(product ->{
-            System.out.println(product);
-        });
+        //mobileProducts.forEach(product ->{
+        //    System.out.println(product);
+        //});
 
         List<Person> people = new ArrayList<>();
         LocalDate ld = LocalDate.of(1990,1,12);
@@ -61,9 +61,22 @@ public class Main {
         Comparator<Person> compareMultiple = Comparator.comparing(Person::getFirstName).thenComparing(Person::getLastName);
         people.sort(compareMultiple);
 
-        people.forEach(person ->{
-            System.out.println(person);
-        });
+        //people.forEach(person ->{
+        //    System.out.println(person);
+        //});
+
+
+        MyInterface<Integer> addOperation = (a,b) -> {
+            return a + b;
+        };
+
+        MyInterface<Integer> multiplyOperation = (a,b) -> {
+            return a * b;
+        };
+
+        System.out.println("add: " + addOperation.process(2,4));
+        System.out.println("multiply: " + multiplyOperation.process(2,4));
+
 
 
     }
