@@ -3,6 +3,9 @@ package lambda;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+import java.time.*;
+import java.util.Date;
+import java.util.Comparator;
 
 
 public class Main {
@@ -36,5 +39,32 @@ public class Main {
         mobileProducts.forEach(product ->{
             System.out.println(product);
         });
+
+        List<Person> people = new ArrayList<>();
+        LocalDate ld = LocalDate.of(1990,1,12);
+        Date date = Date.from(ld.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        people.add(new Person(1L, "Bob", "Ong", 30000, date));
+        people.add(new Person(1L, "Fred", "Ong", 20000, date));
+        people.add(new Person(1L, "Tom", "Tan", 10000, date));        people.add(new Person(1L, "Harry", "Ong", 40000, date));
+        people.add(new Person(1L, "Dennis", "Ng", 40000, date));
+        people.add(new Person(1L, "Chris", "Lim", 40000, date));
+
+        //Comparing 1 way
+        //Comparator<Person> compare = Comparator.comparing(p -> p.getFirstName());
+        //people.sort(compare.reversed());
+
+        //people.forEach(person ->{
+        //    System.out.println(person);
+        //});
+
+        //Compare using multiple items
+        Comparator<Person> compareMultiple = Comparator.comparing(Person::getFirstName).thenComparing(Person::getLastName);
+        people.sort(compareMultiple);
+
+        people.forEach(person ->{
+            System.out.println(person);
+        });
+
+
     }
 }
