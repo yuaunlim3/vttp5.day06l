@@ -1,4 +1,4 @@
-package day06l;
+package day06l1;
 
 
 public class App{
